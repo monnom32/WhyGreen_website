@@ -4,24 +4,6 @@ body {
   display: flex;
 }
 
-/* Боковое меню */
-.sidebar {
-  width: 200px;
-  padding: 20px;
-  border-right: 2px solid #000;
-  height: 100vh;
-  box-sizing: border-box;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar a {
-  text-decoration: none;
-}
-
 /* Основная зона */
 .content {
   flex: 1;
