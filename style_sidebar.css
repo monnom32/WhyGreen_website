@@ -1,0 +1,40 @@
+/* Общие настройки страницы */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  display: flex; /* Контейнер для меню и контента */
+}
+
+/* Сайдбар */
+.sidebar {
+  width: 220px;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  height: 100vh; /* на всю высоту окна */
+  box-sizing: border-box;
+}
+
+/* Кнопки внутри сайдбара */
+.sidebar a {
+  display: block;
+  padding: 12px;
+  margin: 8px 0;
+  background-color: #444;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+/* Контент */
+.content {
+  flex: 1;
+  padding: 20px;
+}
