@@ -22,28 +22,3 @@ body {
   box-sizing: border-box;
   text-align: center;
 }
-
-.sidebar {
-  width: 220px;
-  background-color: #333;
-  color: white;
-  padding: 15px;
-  height: 100vh; /* на всю высоту окна */
-  box-sizing: border-box;
-}
-
-.sidebar a {
-  display: block;
-  padding: 12px;
-  margin: 8px 0;
-  background-color: #444;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-.sidebar a:hover {
-  background-color: #555;
-}
