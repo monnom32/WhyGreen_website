@@ -16,7 +16,7 @@ body {
 
 /* Два маленьких блока */
 .block {
-  width: 50;
+  width: 70%;
   padding: 20px;
   border: 2px solid #000;
   box-sizing: border-box;
