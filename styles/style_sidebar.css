@@ -6,7 +6,6 @@ html, body {
   display: flex; /* Контейнер для меню и контента */
 }
 
-/* Сайдбар */
 .sidebar {
   width: 220px;
   background-color: #333;
@@ -16,7 +15,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Кнопки внутри сайдбара */
 .sidebar a {
   display: block;
   padding: 12px;
@@ -31,10 +29,4 @@ html, body {
 
 .sidebar a:hover {
   background-color: #555;
-}
-
-/* Контент */
-.content {
-  flex: 1;
-  padding: 20px;
 }
