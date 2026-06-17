@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wind Clicker — Ветряная энергия</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ФОНОВОЕ ИЗОБРАЖЕНИЕ -->
+  <!-- Замени src в <img id="bg-img"> в файле или просто замени файл bg.png в папке images/ -->
+  <div id="background">
+    <img id="bg-img" src="images/bg.png" alt="" onerror="this.style.display='none'" />
+  </div>
+
+  <!-- ШАПКА -->
+  <header>
+    <h1>🌬️ Wind Clicker</h1>
+    <div id="energy-display">
+      <span id="energy-count">0</span> ⚡ энергии
+      &nbsp;|&nbsp;
+      <span id="rate-display">0</span> ⚡/сек
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ВЕТРЯК (кликабельный) -->
+    <section id="turbine-section">
+      <div id="turbine-wrap" title="Нажми, чтобы генерировать энергию!">
+
+        <!-- БАШНЯ: замени images/tower.png на свою картинку (рекомендуется ~120×300px PNG) -->
+        <img id="tower-img" src="images/tower.png" alt="башня"
+             onerror="this.style.display='none'" />
+
+        <!-- ПРОПЕЛЛЕР: замени images/blade.png на свою картинку (~200×200px PNG с прозрачным фоном) -->
+        <!-- Он вращается при клике и пассивно — в зависимости от улучшений -->
+        <img id="blade-img" src="images/blade.png" alt="пропеллер"
+             onerror="this.style.display='none'" />
+
+        <!-- Заглушка если картинки нет -->
+        <div id="turbine-placeholder">
+          <div id="ph-blade">🌀</div>
+          <div id="ph-tower">|</div>
+        </div>
+
+      </div>
+      <p id="click-hint">Нажми на ветряк!</p>
+      <p id="click-value">+<span id="click-energy">1</span> ⚡ за клик</p>
+    </section>
+
+    <!-- УЛУЧШЕНИЯ -->
+    <section id="upgrades-section">
+      <h2>Улучшения</h2>
+      <div id="upgrades-list">
+        <!-- Карточки улучшений генерируются из JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ПОПАП: факт о ветряной энергии -->
+  <div id="fact-overlay" class="hidden">
+    <div id="fact-box">
+      <div id="fact-icon">🌍</div>
+      <p id="fact-text"></p>
+      <button id="fact-close">Понятно!</button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
