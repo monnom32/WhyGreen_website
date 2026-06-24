@@ -1,42 +1,35 @@
-// ============================================================
-//  CONFIG.JS — ВСЁ НАСТРАИВАЕТСЯ ЗДЕСЬ, КОД ТРОГАТЬ НЕ НАДО
-// ============================================================
 
 const CONFIG = {
 
-  // ----------------------------------------------------------
-  // КЛИК
-  // ----------------------------------------------------------
-  baseClickEnergy: 1,          // сколько ⚡ даёт один клик (без улучшений)
-  spinDuration: 1200,          // мс — как долго крутится пропеллер после клика
+  // Clicking
 
-  // ----------------------------------------------------------
-  // ПАССИВНАЯ ГЕНЕРАЦИЯ
-  // ----------------------------------------------------------
-  tickIntervalMs: 1000,        // как часто начисляется пассивная энергия (мс)
+  baseClickEnergy: 1,          // basic energy gain per click
+  spinDuration: 1200,          // blade spinning interval
 
-  // ----------------------------------------------------------
+
+  // Passive generation rate
+  tickIntervalMs: 1000,        // passive energy gain speed
+
   // УЛУЧШЕНИЯ
   // Каждое улучшение — объект:
-  //   id          — уникальная строка (латиница, без пробелов)
-  //   name        — название кнопки
-  //   description — подсказка под кнопкой
-  //   cost        — стоимость в ⚡
-  //   icon        — путь к картинке кнопки (рекомендуется ~64×64px PNG)
-  //                 если картинки нет — показывается emoji
-  //   emoji       — запасной символ если нет картинки
-  //   effect      — что делает улучшение:
-  //       { type: "click",   value: N }   → +N ⚡ к каждому клику
-  //       { type: "passive", value: N }   → +N ⚡ в секунду постоянно
-  //       { type: "speed",   value: N }   → пропеллер крутится в N раз быстрее (визуально)
-  //   maxBuys     — сколько раз можно купить (0 = без ограничений)
-  //   costGrowth  — во сколько раз дорожает после каждой покупки (1 = не дорожает)
+  //   id          — unique id
+  //   name        — button name
+  //   description — button description
+  //   cost        — energy cost
+  //   icon        — path to the 64x64 PNG icon
+  //   emoji       — backup symbol if got no icon
+  //   effect      — upgrade effect:
+  //       { type: "click",   value: N }   → +N of energy to each click
+  //       { type: "passive", value: N }   → +N energy each second constantly
+  //       { type: "speed",   value: N }   → blades spin faster (just visual stuff)
+  //   maxBuys     — how many times we can buy the ugrade (0 is infinite)
+  //   costGrowth  — cost multiplier after each buy (if 1 = doesnt multiply)
   // ----------------------------------------------------------
   upgrades: [
     {
       id: "better_blades",
-      name: "Длинные лопасти",
-      description: "+2 ⚡ за клик",
+      name: "Long blades",
+      description: "+2 ⚡ per click",
       cost: 10,
       icon: "images/upg_blades.png",
       emoji: "🪁",
@@ -46,8 +39,8 @@ const CONFIG = {
     },
     {
       id: "gearbox",
-      name: "Редуктор",
-      description: "+1 ⚡/сек пассивно",
+      name: "Gearbox",
+      description: "+1 ⚡/sec",
       cost: 25,
       icon: "images/upg_gear.png",
       emoji: "⚙️",
@@ -57,8 +50,8 @@ const CONFIG = {
     },
     {
       id: "auto_rotate",
-      name: "Авторотация",
-      description: "+3 ⚡/сек пассивно",
+      name: "Auto rotation",
+      description: "+3 ⚡/sec",
       cost: 100,
       icon: "images/upg_auto.png",
       emoji: "🔄",
@@ -68,8 +61,8 @@ const CONFIG = {
     },
     {
       id: "turbine_farm",
-      name: "Ветроферма",
-      description: "+10 ⚡/сек пассивно",
+      name: "Turbine farm",
+      description: "+10 ⚡/sec",
       cost: 500,
       icon: "images/upg_farm.png",
       emoji: "🏭",
@@ -79,8 +72,8 @@ const CONFIG = {
     },
     {
       id: "super_click",
-      name: "Суперклик",
-      description: "+10 ⚡ за клик",
+      name: "Super click",
+      description: "+10 ⚡ per click",
       cost: 200,
       icon: "images/upg_super.png",
       emoji: "⚡",
@@ -90,32 +83,31 @@ const CONFIG = {
     }
   ],
 
-  // ----------------------------------------------------------
-  // ФАКТЫ — показываются при достижении порогов очков
-  // threshold — сколько ⚡ нужно набрать, чтобы показался факт
-  // text      — текст факта
-  // (можно добавлять сколько угодно!)
-  // ----------------------------------------------------------
+
+  // Facts. Shown when player reaches certain points amount
+  // threshold — how much energy we need to reach
+  // text      — facts text
+
   facts: [
     {
       threshold: 50,
-      text: "Первый коммерческий ветрогенератор был установлен в Дании ещё в 1891 году!"
+      text: "First commercial wind turbine was installed in Denmark in 1891!"
     },
     {
       threshold: 200,
-      text: "Современные ветряки могут вырабатывать достаточно энергии, чтобы обеспечить электричеством более 1 000 домов в год."
+      text: "Modern wind turbines are able to generate enough energy to provide energy to a 1000 houses per year."
     },
     {
       threshold: 500,
-      text: "Лопасти крупных ветрогенераторов достигают 80–90 метров в длину — это больше, чем размах крыльев Boeing 747!"
+      text: "Blades of large turbines reach up to 80-90 meters in length. This is larger than a Boeing 747 wing!"
     },
     {
       threshold: 1500,
-      text: "Ветровая энергия — одна из самых быстрорастущих отраслей в мире. В 2023 году глобальная мощность превысила 1 000 ГВт."
+      text: " Wind energy is one of the fast growing (ПЕРЕВЕДИ ОТРАСЛЬ) in world. In 2023, their global power has surpassed 1 000 gigawatt."
     },
-    {
+	{
       threshold: 5000,
-      text: "Оффшорные ветряки (в море) эффективнее наземных: ветер там постоянный и сильный, а шум не мешает людям."
+      text: "Offshore turbines (in sea) are more effective than the ones on land. The wind in the sea is constant and the noise does not bother people."
     },
     {
       threshold: 15000,

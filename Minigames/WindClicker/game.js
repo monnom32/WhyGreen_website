@@ -1,11 +1,8 @@
-// ============================================================
-//  GAME.JS — игровая логика (не трогай, если не уверен)
-// ============================================================
 
 (function () {
   "use strict";
 
-  // ---------- Состояние игры ----------
+  //Game state
   const state = {
     energy: 0,
     totalEarned: 0,
@@ -15,7 +12,7 @@
     upgrades: {}     // { id: { bought, currentCost } }
   };
 
-  // ---------- DOM-ссылки ----------
+  //DOM-links
   const $energy   = document.getElementById("energy-count");
   const $rate     = document.getElementById("rate-display");
   const $clickVal = document.getElementById("click-energy");
@@ -27,12 +24,12 @@
   const $factText = document.getElementById("fact-text");
   const $factClose= document.getElementById("fact-close");
 
-  // ---------- Инициализация улучшений ----------
+  //Upgrade init
   CONFIG.upgrades.forEach(u => {
     state.upgrades[u.id] = { bought: 0, currentCost: u.cost };
   });
 
-  // ---------- Рендер карточек улучшений ----------
+  //Upgrade render
   function renderUpgrades() {
     $upgList.innerHTML = "";
     CONFIG.upgrades.forEach(u => {
@@ -44,7 +41,7 @@
       card.className = "upg-card" + (affordable ? " can-buy" : "") + (maxed ? " maxed" : "");
       card.dataset.id = u.id;
 
-      // иконка: сначала пробуем картинку, потом emoji
+      //First we try the image, else we use emoji
       const iconHtml = `
         <div class="upg-icon">
           <img src="${u.icon}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
@@ -74,7 +71,7 @@
     });
   }
 
-  // ---------- Покупка улучшения ----------
+  //Buying upggrades
   function buyUpgrade(id) {
     const u = CONFIG.upgrades.find(x => x.id === id);
     const s = state.upgrades[id];
@@ -92,7 +89,7 @@
     renderUpgrades();
   }
 
-  // ---------- Клик по ветряку ----------
+  //Click on turbbine
   function handleClick() {
     const gained = CONFIG.baseClickEnergy + state.clickBonus;
     state.energy     += gained;
@@ -102,11 +99,11 @@
     updateUI();
     renderUpgrades();
 
-    // всплывашка "+N"
+    //"+N" popup
     showFloatText("+" + gained + " ⚡");
   }
 
-  // ---------- Вращение пропеллера ----------
+  // Turbine spin
   let spinTimeout = null;
   let passiveSpinInterval = null;
 
@@ -118,7 +115,7 @@
       clearTimeout(spinTimeout);
       spinTimeout = setTimeout(() => $blade.classList.remove("spinning"), CONFIG.spinDuration);
     }
-    // Заглушка
+    //Placeholder
     const ph = document.getElementById("ph-blade");
     if (ph) {
       ph.classList.add("spinning-emoji");
@@ -126,7 +123,7 @@
     }
   }
 
-  // Пассивная анимация пропеллера пропорционально скорости
+  //Passive spinning stuff
   function updatePassiveSpin() {
     if (passiveSpinInterval) clearInterval(passiveSpinInterval);
     if (state.passiveRate > 0 && $blade) {
@@ -137,7 +134,7 @@
     }
   }
 
-  // ---------- Пассивный доход ----------
+  //Passive income (Wish i had one)
   setInterval(() => {
     if (state.passiveRate > 0) {
       state.energy      += state.passiveRate;
@@ -148,7 +145,7 @@
     }
   }, CONFIG.tickIntervalMs);
 
-  // ---------- Факты ----------
+  //Facts
   let factQueue = [];
   let showingFact = false;
 
@@ -174,36 +171,36 @@
     setTimeout(showNextFact, 400);
   });
 
-  // ---------- Обновление HUD ----------
+  //HUD update
   function updateUI() {
     $energy.textContent  = fmt(Math.floor(state.energy));
     $rate.textContent    = fmt(state.passiveRate);
     $clickVal.textContent = CONFIG.baseClickEnergy + state.clickBonus;
   }
 
-  // ---------- Форматирование чисел ----------
+  //Number formatting
   function fmt(n) {
     if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
     if (n >= 1_000)     return (n / 1_000).toFixed(1) + "K";
     return n.toString();
   }
 
-  // ---------- Всплывающий текст ----------
+  //Floating text
   function showFloatText(text) {
     const el = document.createElement("div");
     el.className = "float-text";
     el.textContent = text;
     const rect = $turbine.getBoundingClientRect();
     el.style.left = (rect.left + rect.width / 2 + window.scrollX) + "px";
-    el.style.top  = (rect.top  + window.scrollY - -150) + "px";
+    el.style.top  = (rect.top  + window.scrollY - 10) + "px";
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 900);
   }
 
-  // ---------- Навесить клик ----------
+  //Click handling stuff
   $turbine.addEventListener("click", handleClick);
 
-  // ---------- Первый рендер ----------
+  //First rendering process
   updateUI();
   renderUpgrades();
   updatePassiveSpin();
