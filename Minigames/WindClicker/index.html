@@ -3,69 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wind Clicker — Ветряная энергия</title>
+  <title>Wind Clicker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ФОНОВОЕ ИЗОБРАЖЕНИЕ -->
-  <!-- Замени src в <img id="bg-img"> в файле или просто замени файл bg.png в папке images/ -->
+  <!-- Background pic -->
   <div id="background">
     <img id="bg-img" src="images/bg.png" alt="" onerror="this.style.display='none'" />
   </div>
 
-  <!-- ШАПКА -->
+  <!-- Header -->
   <header>
-    <h1>🌬️ Wind Clicker</h1>
+    <h1>Wind Clicker</h1>
     <div id="energy-display">
-      <span id="energy-count">0</span> ⚡ энергии
+      <span id="energy-count">0</span> ⚡ energie
       &nbsp;|&nbsp;
-      <span id="rate-display">0</span> ⚡/сек
+      <span id="rate-display">0</span> ⚡/sec
     </div>
   </header>
 
   <main>
 
-    <!-- ВЕТРЯК (кликабельный) -->
+    <!-- Turbine stuff -->
     <section id="turbine-section">
       <div id="turbine-wrap" title="Нажми, чтобы генерировать энергию!">
 
-        <!-- БАШНЯ: замени images/tower.png на свою картинку (рекомендуется ~120×300px PNG) -->
+        <!-- Tower graphics -->
         <img id="tower-img" src="images/tower.png" alt="башня"
              onerror="this.style.display='none'" />
 
-        <!-- ПРОПЕЛЛЕР: замени images/blade.png на свою картинку (~200×200px PNG с прозрачным фоном) -->
-        <!-- Он вращается при клике и пассивно — в зависимости от улучшений -->
+        <!--Blade grapgics -->
         <img id="blade-img" src="images/blade.png" alt="пропеллер"
              onerror="this.style.display='none'" />
 
-        <!-- Заглушка если картинки нет -->
+        <!-- Placeholder if no image -->
         <div id="turbine-placeholder">
           <div id="ph-blade">🌀</div>
           <div id="ph-tower">|</div>
         </div>
 
       </div>
-      <p id="click-hint">Нажми на ветряк!</p>
-      <p id="click-value">+<span id="click-energy">1</span> ⚡ за клик</p>
+      <p id="click-hint">Clique sur l'éolienne !</p>
+      <p id="click-value">+<span id="click-energy">1</span> ⚡ par clic</p>
     </section>
 
-    <!-- УЛУЧШЕНИЯ -->
+    <!-- upgrades -->
     <section id="upgrades-section">
-      <h2>Улучшения</h2>
+      <h2>Améliorations</h2>
       <div id="upgrades-list">
-        <!-- Карточки улучшений генерируются из JS -->
+        <!-- Upgrades generate from JS -->
       </div>
     </section>
 
   </main>
 
-  <!-- ПОПАП: факт о ветряной энергии -->
+  <!-- Facts popup -->
   <div id="fact-overlay" class="hidden">
     <div id="fact-box">
       <div id="fact-icon">🌍</div>
       <p id="fact-text"></p>
-      <button id="fact-close">Понятно!</button>
+      <button id="fact-close">Ok</button>
     </div>
   </div>
 
