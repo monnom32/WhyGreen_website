@@ -60,7 +60,7 @@
           <span class="upg-bought">Куплено: ${boughtLabel}</span>
         </div>
         <div class="upg-cost">
-          ${maxed ? "МАКС." : `${fmt(Math.ceil(s.currentCost))} ⚡`}
+          ${maxed ? "MAX." : `${fmt(Math.ceil(s.currentCost))} ⚡`}
         </div>`;
 
       if (!maxed) {
