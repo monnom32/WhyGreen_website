@@ -28,7 +28,7 @@ const CONFIG = {
   upgrades: [
     {
       id: "better_blades",
-      name: "Long blades",
+      name: "Longues pales",
       description: "+2 ⚡ per click",
       cost: 10,
       icon: "images/upg_blades.png",
@@ -39,7 +39,7 @@ const CONFIG = {
     },
     {
       id: "gearbox",
-      name: "Gearbox",
+      name: "Réducteur",
       description: "+1 ⚡/sec",
       cost: 25,
       icon: "images/upg_gear.png",
@@ -50,7 +50,7 @@ const CONFIG = {
     },
     {
       id: "auto_rotate",
-      name: "Auto rotation",
+      name: "Rotation automatique",
       description: "+3 ⚡/sec",
       cost: 100,
       icon: "images/upg_auto.png",
@@ -61,7 +61,7 @@ const CONFIG = {
     },
     {
       id: "turbine_farm",
-      name: "Turbine farm",
+      name: "Parc éolien",
       description: "+10 ⚡/sec",
       cost: 500,
       icon: "images/upg_farm.png",
@@ -72,7 +72,7 @@ const CONFIG = {
     },
     {
       id: "super_click",
-      name: "Super click",
+      name: "Super clic",
       description: "+10 ⚡ per click",
       cost: 200,
       icon: "images/upg_super.png",
@@ -91,7 +91,7 @@ const CONFIG = {
   facts: [
     {
       threshold: 50,
-      text: "First commercial wind turbine was installed in Denmark in 1891!"
+      text: "La première éolienne à avoir alimenté le réseau électrique a été installée aux États-Unis par Charles Brush en 1887"
     },
     {
       threshold: 200,
