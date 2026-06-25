@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Comment un panneau solaire produit-il de l'électricité ?</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Head -->
+    <header id="hud">
+      <div id="energy-box">
+        <span id="energy-icon">⚡</span>
+        <span id="energy-count">0</span>
+        <span id="energy-unit">J</span>
+      </div>
+      <div id="goal-box">
+        <span id="goal-label">Objectif :</span>
+        <span id="goal-name">-</span>
+        <div id="goal-bar-track">
+          <div id="goal-bar-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <p id="instruction">☀️ Clique sur le soleil pour lancer les photons !</p>
+
+    <!-- Scene -->
+    <div id="scene">
+
+      <!-- Sun -->
+      <div id="sun-wrap">
+        <img id="sun-img" src="images/sun.png" alt="Soleil" onerror="this.style.display='none'" />
+        <div id="sun-placeholder">☀️</div>
+      </div>
+
+      <!-- Photone zone -->
+      <div id="photon-layer"></div>
+
+      <!-- Cut panel -->
+      <div id="panel-cross-section">
+        <div id="panel-glass" title="Verre"></div>
+        <div id="cells-row">
+          <!-- Cells are generated in JS -->
+        </div>
+        <div id="panel-base" title="Support"></div>
+      </div>
+
+    </div>
+
+    <!-- Physics hint -->
+    <div id="physics-note">
+      <span id="physics-icon">💡</span>
+      <span id="physics-text">Un photon pénètre dans la cellule → il éjecte un électron → l'électron génère un courant électrique</span>
+    </div>
+
+  </div>
+
+  <!-- Achievement popup -->
+  <div id="goal-overlay" class="hidden">
+    <div id="goal-box-popup">
+      <div id="goal-popup-icon">💡</div>
+      <h2 id="goal-popup-title"></h2>
+      <p id="goal-popup-text"></p>
+      <button id="goal-popup-close">Continuer</button>
+    </div>
+  </div>
+
+  <!-- Final popup -->
+  <div id="final-overlay" class="hidden">
+    <div id="final-box-popup">
+      <div id="final-icon">🏙️</div>
+      <h2 id="final-title"></h2>
+      <p id="final-text"></p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
