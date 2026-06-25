@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  --bg:           #f7faf8;
+  --ink:          #16241c;
+  --ink-soft:     #51695c;
+  --line:         #d8e6dd;
+  --card:         #ffffff;
+  --accent-clean: #2d9e5f;
+  --accent-dirty: #3a3a3a;
+  --warn-bg:      #fff4e0;
+  --warn-text:    #8a5a14;
+  --radius:       14px;
+  --shadow:       0 6px 24px rgba(20,50,30,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+/* Header*/
+#app-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+#app-title {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+#app-subtitle {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+/*Control Panel*/
+#controls {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+
+#source-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.18s ease;
+  background: #fff;
+}
+.toggle-pill input { display: none; }
+.toggle-pill.active {
+  border-color: var(--pill-color, var(--accent-clean));
+  background: color-mix(in srgb, var(--pill-color, var(--accent-clean)) 12%, white);
+}
+.toggle-pill:not(.active) { opacity: 0.55; }
+.toggle-pill:hover { opacity: 0.85; }
+.toggle-pill.active:hover { opacity: 1; }
+
+.toggle-icon {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.toggle-icon img { width: 100%; height: 100%; object-fit: contain; }
+.toggle-name { font-weight: 700; font-size: 0.92rem; }
+
+/* ---------- Слайдер ---------- */
+#slider-block { padding-top: 4px; }
+#slider-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 1.02rem;
+}
+#slider-value {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-clean);
+  font-weight: 700;
+}
+
+#energy-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-clean), var(--line));
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+#energy-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 3px solid var(--accent-clean);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+#energy-slider::-moz-range-thumb {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 3px solid var(--accent-clean);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#slider-equivalent {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- График ---------- */
+#chart-section {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px 20px;
+  margin-bottom: 18px;
+}
+
+#chart-wrap {
+  position: relative;
+  min-height: 420px;
+}
+
+#chart-break-zigzag {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(380px * 0.55 + 38px); /* matches the breakAfterKg threshold in the JS px logic */
+  height: 14px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--warn-bg) 0 8px,
+    transparent 8px 16px
+  );
+  border-top: 2px dashed #d99a3a;
+  border-bottom: 2px dashed #d99a3a;
+  z-index: 1;
+}
+#chart-break-zigzag.hidden { display: none; }
+
+#bars-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 48px);
+  height: 420px;
+  padding-bottom: 0;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 86px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.bar-track {
+  width: 56px;
+  height: 380px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, #eef4f0 0%, #f7faf8 100%);
+  border-radius: 8px 8px 4px 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.bar-fill {
+  width: 100%;
+  height: 0px;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar-icon {
+  margin-top: 10px;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.bar-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+.bar-label {
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.empty-msg {
+  margin: auto;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  text-align: center;
+}
+
+#chart-note {
+  font-size: 0.8rem;
+  color: var(--warn-text);
+  background: var(--warn-bg);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 14px;
+}
+#chart-note.hidden { display: none; }
+
+/* result */
+#summary-box {
+  background: linear-gradient(135deg, #eaf7ef, #f7faf8);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  min-height: 24px;
+}
+#summary-text {
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/*footer*/
+#app-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+/*Mobile adapt (Should we keep it?)*/
+@media (max-width: 560px) {
+  #bars-container { gap: 12px; }
+  .bar-col { width: 64px; }
+  .bar-track { width: 42px; height: 300px; }
+  #chart-wrap { min-height: 340px; }
+  #bars-container { height: 340px; }
+}

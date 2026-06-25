@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CO₂ : énergies renouvelables VS combustibles fossiles</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- title -->
+    <header id="app-header">
+      <h1 id="app-title">Quelle quantité de CO₂ se cache dans ton électricité ?</h1>
+      <p id="app-subtitle">Déplace le curseur et compare les sources d'énergie en temps réel</p>
+    </header>
+
+    <!-- control panel -->
+    <section id="controls">
+
+      <!-- source checkbox -->
+      <div id="source-toggles">
+        <!-- Generated from JavaScript based on config.js -->
+      </div>
+
+      <!-- Energy Amount Slider -->
+      <div id="slider-block">
+        <label for="energy-slider" id="slider-label">
+          Il faut de l'énergie : <span id="slider-value">1 000</span> kWh
+        </label>
+        <input type="range" id="energy-slider" min="0" max="100" value="20" step="1" />
+        <p id="slider-equivalent">≈ consommation mensuelle d'un foyer</p>
+      </div>
+
+    </section>
+
+    <!-- ГРАФИК -->
+    <section id="chart-section">
+      <div id="chart-wrap">
+        <div id="chart-break-zigzag" class="hidden" title="L'échelle est compressée au-dessus de cette ligne"></div>
+        <div id="bars-container">
+          <!-- bars generated from JS (Damn the JS, i hate it...) -->
+        </div>
+      </div>
+      <p id="chart-note">
+        (!!!) La partie du graphique située au-dessus de cette marque est condensée (voir le zigzag) ; sinon, le charbon et le gaz
+        ne pourraient pas figurer sur le même graphique que l'éolien et le solaire, tant la différence est grande.
+      </p>
+    </section>
+
+    <!-- final phase (finally) -->
+    <div id="summary-box">
+      <p id="summary-text"></p>
+    </div>
+
+    <footer id="app-footer">
+      <span id="footer-text">Données : indicateurs moyens du cycle de vie (GIEC, NREL)</span>
+    </footer>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
